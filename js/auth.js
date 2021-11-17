@@ -10,7 +10,8 @@ export const auth = function(){
         document.querySelector('.user-name').style.display = 'block' 
         document.querySelector('.user-name').textContent = JSON.parse(localStorage.getItem('user')).name
         open.style.display = 'none'
-        out.style.display = 'block'
+        out.style.display = 'flex'
+        cart.style.display = 'flex'
     }
     
     function openModal(){
@@ -21,8 +22,9 @@ export const auth = function(){
         e.target.style.display = 'none'
         document.querySelector('.user-name').style.display = 'none' 
         localStorage.removeItem('user')
-        open.style.display = 'block'
+        open.style.display = 'flex'
         out.style.display = 'none'
+        cart.style.display = 'none'
         login.value = ""
         password.value = ""
     }
