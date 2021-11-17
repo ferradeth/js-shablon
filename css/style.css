@@ -32,7 +32,9 @@ button {
     max-width: 1200px;
     margin: auto;
 }
-
+.button-text {
+    display: block;
+}
 .header {
     display: flex;
     align-items: center;
