@@ -10,15 +10,52 @@ export const cart = function(){
             cartItem.classList.add('food-row')
             cartItem.id = item.id
             cartItem.innerHTML = createItem(item)
+
+            cartItem.querySelector('.minus').addEventListener('click', ()=>{
+                // alert(cartItem.querySelector('.counter'))
+                minusCount(cartItem.querySelector('.counter'), item)
+            })
+            cartItem.querySelector('.plus').addEventListener('click', ()=>{
+                plusCount(cartItem.querySelector('.counter'), item)
+            })
             document.querySelector('.modal-body').append(cartItem)
         })
     }
 
+    function updateText(amount, count){
+        amount.textContent = count
+    } 
+
+    function updatePricetag(arr){
+        document.querySelector('.modal-pricetag').textContent = arr.reduce((sum, item) => sum + item.price * item.count, 0) +  '₽'
+    }
+
+    function minusCount(amount, cartitem){
+        const arr = JSON.parse(localStorage.getItem('card'))
+        let currentItem = arr.findIndex(item => cartitem.id === item.id)
+        if (arr[currentItem].count>0) arr[currentItem].count--
+        else arr[currentItem].count = 0
+        localStorage.setItem('card', JSON.stringify(arr))
+
+        updateText(amount, arr[currentItem].count)
+        updatePricetag(arr)
+    }
+    function plusCount(amount, cartitem){
+        const arr = JSON.parse(localStorage.getItem('card'))
+        let currentItem = arr.findIndex(item => cartitem.id === item.id)
+        arr[currentItem].count++
+        localStorage.setItem('card', JSON.stringify(arr))
+
+        updateText(amount, arr[currentItem].count)
+        updatePricetag(arr)
+    }
+  
     cartBtn.addEventListener('click', ()=>{
         let array = JSON.parse(localStorage.getItem('card'))
         modalCart.style.display = 'flex'
         document.querySelector('.modal-body').innerHTML = ""
         createCartList(array)
+        updatePricetag(array)
     })
     closeCart.addEventListener('click', ()=>{
         modalCart.style.display = 'none'
@@ -41,9 +78,9 @@ export const cart = function(){
 			<span class="food-name">${name}</span>
 			<strong class="food-price">${price} ₽</strong>
 			<div class="food-counter">
-				<button class="counter-button">-</button>
+				<button class="counter-button minus">-</button>
 				<span class="counter">${count}</span>
-				<button class="counter-button">+</button>
+				<button class="counter-button plus">+</button>
 			</div>
 		`
     }
