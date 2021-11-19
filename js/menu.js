@@ -35,7 +35,7 @@ const menu = function () {
     function createCard(item) {
         const {image, name, description, price} = item
         return `
-        <img src="${image}" alt="image" class="card-image">
+        <img src="${image[0]}" alt="image" class="card-image">
 		<div class="card-text">
             <div class="card-heading">
                 <h3 class="card-title card-title-reg">${name}</h3>
