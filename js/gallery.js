@@ -9,45 +9,36 @@ export const gallery = function(){
 
     document.querySelectorAll('.card').forEach(item=>{
         item.addEventListener('click', e =>{
+            let item = cards.find(el=> el.id == e.currentTarget.id)
             count = 0
-            openGallery(e.currentTarget.id, count)
+            openGallery(item, count)
             modalGal.style.display = 'flex'
         })
     })
     
     left.addEventListener('click', e=>{
+        let item = cards.find(el=> el.id == e.currentTarget.closest('.modal-body').id)
         if (count>0)
             count--
-        else count = 2
-        openGallery(e.currentTarget.closest('.modal-body').id, count)
+        else count = item.image.length-1
+        openGallery(item, count)
     })
 
     right.addEventListener('click', e=>{
-        if (count<2)
+        let item = cards.find(el=> el.id == e.currentTarget.closest('.modal-body').id)
+        if (count<item.image.length-1)
             count++
         else count = 0
-        openGallery(e.currentTarget.closest('.modal-body').id, count)
+        openGallery(item, count)
     })
 
-    // document.addEventListener('keyup', (e) => {
-    //     if(e.code == 'ArrowLeft') {
-    //         if (count>0)
-    //         count--
-    //         else count = 2
-    //     }
-    //     if (e.code == 'ArrowRight'){
-    //         if(count<2)
-    //         count++
-    //         else count = 0        }
-    // })
-
     function openGallery(item, count){
-        let {name, image, description, price, id} = cards.find(el=> el.id == item)
-        modalGal.querySelector('.modal-body').id = id
-        head.textContent = name
-        galleryItem.src = image[count]
-        galleryDes.textContent = description
-        modalGal.querySelector('.modal-pricetag').textContent = `${price} ₽`
+        //let {name, image, description, price, id} = cards.find(el=> el.id == item)
+        modalGal.querySelector('.modal-body').id = item.id
+        head.textContent = item.name
+        galleryItem.src = item.image[count]
+        galleryDes.textContent = item.description
+        modalGal.querySelector('.modal-pricetag').textContent = `${item.price} ₽`
     }
 
     close.addEventListener('click', ()=>{
