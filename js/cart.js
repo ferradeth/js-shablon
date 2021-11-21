@@ -18,6 +18,7 @@ export const cart = function(){
             cartItem.querySelector('.plus').addEventListener('click', ()=>{
                 plusCount(cartItem.querySelector('.counter'), item)
             })
+
             document.querySelector('.modal-body').append(cartItem)
         })
     }

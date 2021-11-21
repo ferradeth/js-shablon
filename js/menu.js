@@ -2,8 +2,6 @@
 import { cards } from "./gusi-lebedi.js"
 
 const menu = function () {
-    let card = []
-    //const addItem = 
     const cardsMenu = document.querySelector('.cards-menu')
     function createManyCards(data) {
         data.forEach(item => {
