@@ -4,8 +4,8 @@ import { cart } from "./cart.js";
 import { gallery } from "./gallery.js";
 import { getCards } from "./api.js";
 getCards()
-    .then(data =>menu(data.cards))
-    
+    .then(data => menu(data.cards))
+
 auth()
 cart()
 gallery()
