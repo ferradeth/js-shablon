@@ -5,11 +5,12 @@ export const gallery = function(){
     const close = modalGal.querySelector('.close')
     const head = modalGal.querySelector('.modal-title')
 
+
     let count = 0 
 
-    document.querySelectorAll('.card').forEach(item=>{
+    document.querySelectorAll('.card-image').forEach(item=>{
         item.addEventListener('click', e =>{
-            let item = cards.find(el=> el.id == e.currentTarget.id)
+            let item = cards.find(el=> el.id == e.currentTarget.closest('.card').id)
             count = 0
             openGallery(item, count)
             modalGal.style.display = 'flex'

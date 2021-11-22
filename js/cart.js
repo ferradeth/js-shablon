@@ -71,6 +71,7 @@ export const cart = function(){
     document.querySelector('.clear-cart').addEventListener('click', ()=>{
         localStorage.removeItem('card')
         document.querySelector('.modal-body').innerHTML = ""
+        document.querySelector('.modal-pricetag').textContent = "0 ₽"
     })
 
     function createItem (item){
