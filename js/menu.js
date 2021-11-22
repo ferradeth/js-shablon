@@ -1,7 +1,7 @@
 //import { cart } from "./cart.js"
-import { cards } from "./gusi-lebedi.js"
+//import { cards } from "./gusi-lebedi.js"
 
-const menu = function () {
+const menu = function (jsonArray) {
     const cardsMenu = document.querySelector('.cards-menu')
     function createManyCards(data) {
         data.forEach(item => {
@@ -54,6 +54,6 @@ const menu = function () {
         </div>`
 
     }
-    createManyCards(cards)
+    createManyCards(jsonArray)
 }
 export { menu }
